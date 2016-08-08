@@ -1,17 +1,12 @@
-<html>
-    <head>
-        <title>SMS blog</title>
-    </head>
-    <div>
-        <h1><a href="/">Classroom Blog</a></h1>
-    </div>
-    <body>
-      {% for post in posts %}
-        <div>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <p>published: {{ post.created_date }}</p>
+{% extends 'classblog/base.html' %}
+{% block content %}
+  {% for post in posts %}
+    <div class="post">
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <div class="date">
+          {{ post.created_date }}
         </div>
-      {% endfor %}
-    </body>
-</html>
+    </div>
+  {% endfor %}
+{% endblock %}
